@@ -1,0 +1,20 @@
+.container {
+  text-align: center;
+}
+
+.logo {
+  height: 250px;
+}
+
+.citiesPage {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.flechaIcon {
+  height: 100px;
+}
+
+.homeIcon {
+  height: 80px;
+}
