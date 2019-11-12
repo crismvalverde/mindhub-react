@@ -1,19 +1,6 @@
 import React, { Component } from 'react'
 import Footer from './footer';
 
-// class Cities extends Component {
-//   render() {
-//     return (
-//       <div className="container">
-//         <h1>Cities page</h1>
-//         <Footer />
-//       </div>
-//     )
-//   }
-// }
-
-// export default Cities
-
 class Prueba extends Component {
 
   constructor(props) {
