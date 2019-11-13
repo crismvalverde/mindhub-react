@@ -1,36 +1,47 @@
 import React, { Component } from 'react'
 import Footer from './footer';
+import { connect } from 'react-redux';
+import { getItems } from './actions/itemActions';
+import PropTypes from 'prop-types';
 
-class Prueba extends Component {
+class CitiesList extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       cities: [],
-      isLoaded: false,
+      loading: false,
     }
   }
 
+  // componentDidMount() {
+  //   fetch('http://localhost:5000/cities/all')
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       this.setState({
+  //         loading: true,
+  //         cities: json,
+  //       })
+  //     });
+  // }
+
   componentDidMount() {
-    fetch('http://localhost:5000/cities/all')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          cities: json,
-        })
-      });
+    this.props.getItems();
   }
 
-  render() {
-    var { isLoaded, cities } = this.state;
+  // render() {
+  //   const {items} = this.props.item;
+  // }
 
-    if (!isLoaded) {
-      return <div>Loading...</div>
+  render() {
+    var { loading, cities } = this.state;
+
+    if (!loading) {
+      return <div className="container">Loading...</div>
     }
     else {
       return (
-        <div>
+        <div className="container">
           <ul>
             {cities.map(city => (
               <li key={city.id}>
@@ -38,11 +49,22 @@ class Prueba extends Component {
               </li>
             ))}
           </ul>
-          <div className="container"><Footer /></div>
+          <Footer />
         </div>
       )
     }
   }
 }
 
-export default Prueba
+CitiesList.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => {
+  return (
+  {
+  cities: state.item
+})}
+
+export default connect(mapStateToProps, { getItems })(CitiesList)
