@@ -34,10 +34,15 @@ class CitiesList extends Component {
   // }
 
   render() {
-    var { loading, cities } = this.state;
+    var { loading, cities } = this.props.cities;
 
     if (!loading) {
-      return <div className="container">Loading...</div>
+      return (
+        <div className="container">
+          <h3>Loading...</h3>
+          <Footer />
+        </div>
+      )
     }
     else {
       return (
@@ -58,13 +63,14 @@ class CitiesList extends Component {
 
 CitiesList.propTypes = {
   getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
+  cities: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
   return (
-  {
-  cities: state.item
-})}
+    {
+      cities: state.item
+    })
+}
 
 export default connect(mapStateToProps, { getItems })(CitiesList)
