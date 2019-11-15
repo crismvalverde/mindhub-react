@@ -14,24 +14,9 @@ class CitiesList extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   fetch('http://localhost:5000/cities/all')
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       this.setState({
-  //         loading: true,
-  //         cities: json,
-  //       })
-  //     });
-  // }
-
   componentDidMount() {
     this.props.getItems();
   }
-
-  // render() {
-  //   const {items} = this.props.item;
-  // }
 
   render() {
     var { loading, cities } = this.props.cities;

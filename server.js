@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
@@ -7,6 +8,7 @@ const City = require("./models/City");
 // const cities = require("./routes/api/cities");
 
 const app = express();
+app.use(cors())
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
@@ -24,13 +26,13 @@ mongoose
 // Use Routes
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("This is the homepage!");
-});
+// router.get("/", (req, res) => {
+//   res.send("This is the homepage!");
+// });
 
-router.get("/test", (req, res) => {
-  res.send({ msg: "Test Works" });
-});
+// router.get("/test", (req, res) => {
+//   res.send({ msg: "Test Works" });
+// });
 
 router.get("/cities/all", async (req, res) => {
   const cities = await City.find();
