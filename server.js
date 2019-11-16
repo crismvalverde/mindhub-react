@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const City = require("./models/City");
+const Itinerary = require("./models/Itinerary");
 
 // const cities = require("./routes/api/cities");
 

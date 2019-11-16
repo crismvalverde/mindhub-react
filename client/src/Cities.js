@@ -14,13 +14,6 @@ class CitiesList extends Component {
     };
   }
 
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     search: ""
-  //   }
-  // };
-
   updateSearch(event) {
     this.setState({ search: event.target.value });
   }
@@ -31,11 +24,11 @@ class CitiesList extends Component {
 
   render() {
     var { loading, cities } = this.props.cities;
-    let filteredCities = this.state.cities.filter(
-      (city) => {
-        return city.name.indexOf(this.state.search) !== -1;
-      }
-    )
+    let filteredCities = cities.filter(city => {
+      return (
+        city.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
 
     if (!loading) {
       return (
