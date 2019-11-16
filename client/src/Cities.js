@@ -1,17 +1,27 @@
-import React, { Component } from 'react'
-import Footer from './footer';
-import { connect } from 'react-redux';
-import { getItems } from './actions/itemActions';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import Footer from "./footer";
+import { connect } from "react-redux";
+import { getItems } from "./actions/itemActions";
+import PropTypes from "prop-types";
 
 class CitiesList extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       cities: [],
-      loading: false,
-    }
+      loading: false
+    };
+  }
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     search: ""
+  //   }
+  // };
+
+  updateSearch(event) {
+    this.setState({ search: event.target.value });
   }
 
   componentDidMount() {
@@ -20,6 +30,11 @@ class CitiesList extends Component {
 
   render() {
     var { loading, cities } = this.props.cities;
+    let filteredCities = this.props.cities.filter(
+      (city) => {
+        return city.name.indexOf(this.state.search) !== -1;
+      }
+    )
 
     if (!loading) {
       return (
@@ -27,21 +42,23 @@ class CitiesList extends Component {
           <h3>Loading...</h3>
           <Footer />
         </div>
-      )
-    }
-    else {
+      );
+    } else {
       return (
         <div className="container">
+          <input
+            type="text"
+            value={this.state.search}
+            onChange={this.updateSearch.bind(this)}
+          />
           <ul>
-            {cities.map(city => (
-              <li key={city.id}>
-                {city.name + ", " + city.country}
-              </li>
+            {filteredCities.map(city => (
+              <li key={city.id}>{city.name + ", " + city.country}</li>
             ))}
           </ul>
           <Footer />
         </div>
-      )
+      );
     }
   }
 }
@@ -49,13 +66,12 @@ class CitiesList extends Component {
 CitiesList.propTypes = {
   getItems: PropTypes.func.isRequired,
   cities: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      cities: state.item
-    })
-}
+const mapStateToProps = state => {
+  return {
+    cities: state.item
+  };
+};
 
-export default connect(mapStateToProps, { getItems })(CitiesList)
+export default connect(mapStateToProps, { getItems })(CitiesList);
