@@ -9,7 +9,8 @@ class CitiesList extends Component {
     super(props);
     this.state = {
       cities: [],
-      loading: false
+      loading: false,
+      search: ""
     };
   }
 
@@ -30,7 +31,7 @@ class CitiesList extends Component {
 
   render() {
     var { loading, cities } = this.props.cities;
-    let filteredCities = this.props.cities.filter(
+    let filteredCities = this.state.cities.filter(
       (city) => {
         return city.name.indexOf(this.state.search) !== -1;
       }
