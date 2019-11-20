@@ -40,6 +40,13 @@ router.get("/cities/all", async (req, res) => {
   res.json(cities)
 });
 
+router.get('/cities/all/:name', (req, res) => {
+  let cityRequested = req.params.name;
+  City.findOne({ name: cityRequested })
+    .then(city => { res.send(city) })
+    .catch(err => console.log(err));
+});
+
 app.use("/", router);
 
 const port = process.env.PORT || 5000;

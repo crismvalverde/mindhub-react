@@ -11,7 +11,7 @@ class Home extends Component {
           <Header />
           <h4>Find your perfect trip, designed by insiders who know and love their cities.</h4>
           <CitiesPage />
-          <h4>Want to build your own Mytinerary?</h4>
+          <h4>Want to build your own MYtinerary?</h4>
           <LogInPage />
           <Footer />
       </div>
