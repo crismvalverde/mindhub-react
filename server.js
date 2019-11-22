@@ -3,9 +3,6 @@ const cors = require('cors')
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-const City = require("./models/City");
-const Itinerary = require("./models/Itinerary");
-
 // const cities = require("./routes/api/cities");
 
 const app = express();
@@ -25,27 +22,21 @@ mongoose
   .catch(err => console.log('err', err))
 
 // Use Routes
-const router = express.Router();
+//const router = express.Router();
+const router = require("./routes/api/cities");
 
-// router.get("/", (req, res) => {
-//   res.send("This is the homepage!");
+
+// router.get("/cities/all", async (req, res) => {
+//   const cities = await City.find();
+//   res.json(cities)
 // });
 
-// router.get("/test", (req, res) => {
-//   res.send({ msg: "Test Works" });
+// router.get('/cities/all/:name', (req, res) => {
+//   let cityRequested = req.params.name;
+//   City.findOne({ name: cityRequested })
+//     .then(city => { res.send(city) })
+//     .catch(err => console.log(err));
 // });
-
-router.get("/cities/all", async (req, res) => {
-  const cities = await City.find();
-  res.json(cities)
-});
-
-router.get('/cities/all/:name', (req, res) => {
-  let cityRequested = req.params.name;
-  City.findOne({ name: cityRequested })
-    .then(city => { res.send(city) })
-    .catch(err => console.log(err));
-});
 
 app.use("/", router);
 

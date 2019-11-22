@@ -3,6 +3,7 @@ import Footer from "./footer";
 import { connect } from "react-redux";
 import { getItems } from "./actions/itemActions";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom'
 
 class CitiesList extends Component {
   constructor(props) {
@@ -47,9 +48,14 @@ class CitiesList extends Component {
           />
           <ul>
             {filteredCities.map(city => (
-              <li key={city.id}>{city.name + ", " + city.country}</li>
+              <Link to={"/itineraries/" + city.name}>
+                <li key={city.id}>{city.name + ", " + city.country}</li>
+              </Link>
             ))}
           </ul>
+          <Link to="/itineraries">
+            <h4>Itineraries Page</h4>
+          </Link>
           <Footer />
         </div>
       );
