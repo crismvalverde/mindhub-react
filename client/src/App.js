@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Cities from './Cities';
 import LogIn from './LogIn';
 import Register from './Register';
-import Itinerary from './ItineraryPage';
+import Itineraries from './Itineraries';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path='/cities' component={Cities} />
             <Route exact path='/login' component={LogIn} />
             <Route exact path='/register' component={Register} />
-            <Route exact path='/itineraries/:name' component={Itinerary} />
+            <Route exact path='/itineraries/:name' component={Itineraries} />
           </Switch>
         </BrowserRouter>
       </Provider>

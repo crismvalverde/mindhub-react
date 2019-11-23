@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-// City Model
+// Itinerary Model
 const Itinerary = require("../../models/Itinerary");
 
-// @route   GET api/cities
-// @desc    Get all cities
-// @access  Public
-router.get('/cities/all/:name', (req, res) => {
-  let cityRequested = req.params.name;
-  City.findOne({ name: cityRequested })
+router.get("/", async (req, res) => {
+  const itineraries = await Itinerary.find();
+  res.json(itineraries)
+});
+
+router.get('/:city', (req, res) => {
+  let cityRequested = req.params.city;
+  Itinerary.find({ city: cityRequested })
     .then(city => { res.send(city) })
     .catch(err => console.log(err));
 });

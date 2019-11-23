@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Footer from "./footer";
 import { connect } from "react-redux";
-import { getItems } from "./actions/itemActions";
+import { getCities } from "./actions/cityActions";
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom'
 
@@ -20,7 +20,7 @@ class CitiesList extends Component {
   }
 
   componentDidMount() {
-    this.props.getItems();
+    this.props.getCities();
   }
 
   render() {
@@ -53,9 +53,6 @@ class CitiesList extends Component {
               </Link>
             ))}
           </ul>
-          <Link to="/itineraries">
-            <h4>Itineraries Page</h4>
-          </Link>
           <Footer />
         </div>
       );
@@ -64,7 +61,7 @@ class CitiesList extends Component {
 }
 
 CitiesList.propTypes = {
-  getItems: PropTypes.func.isRequired,
+  getCities: PropTypes.func.isRequired,
   cities: PropTypes.object.isRequired
 };
 
@@ -74,4 +71,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getItems })(CitiesList);
+export default connect(mapStateToProps, { getCities })(CitiesList);

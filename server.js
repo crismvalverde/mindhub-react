@@ -3,42 +3,26 @@ const cors = require('cors')
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-// const cities = require("./routes/api/cities");
-
 const app = express();
 app.use(cors())
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 // DB config
 const db = require("./config/keys").mongoURI;
 
 // Connect to Mongo
 mongoose
-  .connect(db)
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected..."))
   .catch(err => console.log('err', err))
 
-// Use Routes
-//const router = express.Router();
-const router = require("./routes/api/cities");
+const routerCities = require("./routes/api/cities");
+const routerItineraries = require("./routes/api/itineraries");
 
-
-// router.get("/cities/all", async (req, res) => {
-//   const cities = await City.find();
-//   res.json(cities)
-// });
-
-// router.get('/cities/all/:name', (req, res) => {
-//   let cityRequested = req.params.name;
-//   City.findOne({ name: cityRequested })
-//     .then(city => { res.send(city) })
-//     .catch(err => console.log(err));
-// });
-
-app.use("/", router);
+app.use("/cities", routerCities);
+app.use("/itineraries", routerItineraries);
 
 const port = process.env.PORT || 5000;
 

@@ -1,15 +1,20 @@
 import axios from 'axios';
-import { GET_ITEMS, ITEMS_LOADING } from './types';
+import { GET_ITINERARIES_BY_CITY, ITEMS_LOADING } from './types';
 
-export const getItems = (name) => dispatch => {
+export const getItinerariesByCity = (city) => dispatch => {
   dispatch(setItemsLoading());
   axios
-    .get('http://localhost:5000/itineraries/' + name)
-    .then(res => 
+    .get('http://localhost:5000/itineraries/' + city)
+    .then(res => res.json())
+    .then(data =>{
+      console.log("res");
+      console.log(data);
+       
       dispatch({
-        type: GET_ITEMS,
-        payload: res.data,
-      }))
+        type: GET_ITINERARIES_BY_CITY,
+        payload: data
+      })})
+    .catch(e => console.log(e))
 };
 
 export const setItemsLoading = () => {

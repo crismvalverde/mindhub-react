@@ -8,7 +8,7 @@ const ItinerarySchema = new Schema ({
     duration: Number,
     price: Number,
     hashtag: Array,
-    city: String
+    city: Schema.Types.ObjectId
 })
 
 module.exports = Itinerary = mongoose.model("Itinerary", ItinerarySchema);

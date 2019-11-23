@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import itemReducer from './itemReducer.js';
+import cityReducer from './cityReducer.js';
+import itineraryReducer from './itineraryReducer';
 
 export default combineReducers({
-  item: itemReducer
+  item: cityReducer,
+  item2: itineraryReducer
 });

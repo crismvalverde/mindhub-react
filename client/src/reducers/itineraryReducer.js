@@ -1,4 +1,4 @@
-import { GET_ITEMS, ITEMS_LOADING } from '../actions/types';
+import { GET_ITINERARIES_BY_CITY, ITEMS_LOADING } from '../actions/types';
 
 const initialState = {
   itineraries: []
@@ -8,12 +8,12 @@ export default function(state = initialState, action) {
   console.log(action);
   console.log(state);
   
-  
   switch(action.type) {
-    case GET_ITEMS:
+    case GET_ITINERARIES_BY_CITY:
       return {
         ...state,
         itineraries: action.payload,
+        loading: true
       };
     case ITEMS_LOADING:
       return {

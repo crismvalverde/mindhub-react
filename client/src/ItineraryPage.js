@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import profilePic from './img/GaudiLover.png';
 import Image from 'react-bootstrap/Image';
 
-class Itinerary extends Component {
-
+class ItineraryPage extends Component {
 	render() {
 		return (
 			<div className="container">
@@ -23,4 +22,4 @@ class Itinerary extends Component {
 	}
 }
 
-export default Itinerary;
+export default ItineraryPage
