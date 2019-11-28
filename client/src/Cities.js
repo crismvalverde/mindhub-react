@@ -48,8 +48,8 @@ class CitiesList extends Component {
           />
           <ul>
             {filteredCities.map(city => (
-              <Link to={"/itineraries/" + city.name}>
-                <li key={city.id}>{city.name + ", " + city.country}</li>
+              <Link to={"/itineraries/" + city._id}>
+                <li key={city._id}>{city.name + ", " + city.country}</li>
               </Link>
             ))}
           </ul>

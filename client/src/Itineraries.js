@@ -15,14 +15,17 @@ class Itineraries extends Component {
 	}
 
 	componentDidMount() {
-		const city = this.props.match.params.name
+		const city = this.props.match.params.id
 		this.props.getItinerariesByCity(city);
 	}
 
 	render() {
-		var { loading, itineraries } = this.props.itineraries;
+		var { loading, itineraries } = this.props;
+		
+		console.log(this.props.itineraries.length)
+		console.log(this.props.itineraries)
 
-		if (!loading) {
+		if (this.props.itineraries.length===0) {
 			return (
 				<div className="container">
 					<h3>Loading...</h3>
@@ -33,11 +36,13 @@ class Itineraries extends Component {
 			return (
 				<div className="container">
 					<ul>
-						{itineraries.map(city => (
-							<li key={city.id}>{city.name + ", " + city.city}</li>
-						))}
+						{console.log(itineraries)}
+					
+						{itineraries.map((elm)=>{
+							return <li key={elm._id}>{elm.title}</li>
+						})}
+						{}
 					</ul>
-					<ItineraryPage />
 				</div>
 			);
 		}
@@ -46,12 +51,12 @@ class Itineraries extends Component {
 
 Itineraries.propTypes = {
 	getItinerariesByCity: PropTypes.func.isRequired,
-	itineraries: PropTypes.object.isRequired
+	itineraries: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {
 	return {
-		itineraries: state.item2
+		itineraries: state.item2.itineraries
 	};
 };
 

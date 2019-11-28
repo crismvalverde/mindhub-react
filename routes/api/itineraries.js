@@ -9,10 +9,11 @@ router.get("/", async (req, res) => {
   res.json(itineraries)
 });
 
-router.get('/:city', (req, res) => {
-  let cityRequested = req.params.city;
+router.get('/:id', (req, res) => {
+  
+  let cityRequested = req.params.id;
   Itinerary.find({ city: cityRequested })
-    .then(city => { res.send(city) })
+    .then(id => { res.send(id) })
     .catch(err => console.log(err));
 });
 

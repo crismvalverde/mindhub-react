@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path='/cities' component={Cities} />
             <Route exact path='/login' component={LogIn} />
             <Route exact path='/register' component={Register} />
-            <Route exact path='/itineraries/:name' component={Itineraries} />
+            <Route exact path='/itineraries/:id' component={Itineraries} />
           </Switch>
         </BrowserRouter>
       </Provider>
