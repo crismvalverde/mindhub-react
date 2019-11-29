@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Footer from "./footer";
 import { connect } from "react-redux";
 import { getItinerariesByCity } from "./actions/itineraryActions";
 import PropTypes from "prop-types";
-import ItineraryPage from './ItineraryPage';
+import { Link } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
+import profilePic from './img/GaudiLover.png';
 
 class Itineraries extends Component {
 	constructor(props) {
@@ -20,29 +21,23 @@ class Itineraries extends Component {
 	}
 
 	render() {
-		var { loading, itineraries } = this.props;
-		
-		console.log(this.props.itineraries.length)
-		console.log(this.props.itineraries)
-
-		if (this.props.itineraries.length===0) {
+		var { itineraries } = this.props;
+		if (this.props.itineraries.length === 0) {
 			return (
 				<div className="container">
 					<h3>Loading...</h3>
-					<Footer />
+					<Link to="/cities"><h6>Choose another city...</h6></Link>
 				</div>
 			);
 		} else {
 			return (
 				<div className="container">
-					<ul>
-						{console.log(itineraries)}
-					
-						{itineraries.map((elm)=>{
-							return <li key={elm._id}>{elm.title}</li>
-						})}
-						{}
-					</ul>
+					{itineraries.map(elm => (
+						<div>
+						<Image src={elm.profilePic} width="150px" roundedCircle alt="profile pic" />
+						</div>
+					))}
+					<Link to="/cities"><h6>Choose another city...</h6></Link>
 				</div>
 			);
 		}
@@ -61,3 +56,9 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { getItinerariesByCity })(Itineraries);
+
+// <ul>
+// {itineraries.map((elm) => {
+// 	return <li key={elm._id}>{elm.title}</li>
+// })}
+// </ul>
