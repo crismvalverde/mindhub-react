@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Footer from "./footer";
 import { connect } from "react-redux";
-import { getItems } from "./actions/itemActions";
+import { getCities } from "./actions/cityActions";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom'
 
 class CitiesList extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class CitiesList extends Component {
   }
 
   componentDidMount() {
-    this.props.getItems();
+    this.props.getCities();
   }
 
   render() {
@@ -47,7 +48,9 @@ class CitiesList extends Component {
           />
           <ul>
             {filteredCities.map(city => (
-              <li key={city.id}>{city.name + ", " + city.country}</li>
+              <Link to={"/itineraries/" + city._id}>
+                <li key={city._id}>{city.name + ", " + city.country}</li>
+              </Link>
             ))}
           </ul>
           <Footer />
@@ -58,7 +61,7 @@ class CitiesList extends Component {
 }
 
 CitiesList.propTypes = {
-  getItems: PropTypes.func.isRequired,
+  getCities: PropTypes.func.isRequired,
   cities: PropTypes.object.isRequired
 };
 
@@ -68,4 +71,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getItems })(CitiesList);
+export default connect(mapStateToProps, { getCities })(CitiesList);
