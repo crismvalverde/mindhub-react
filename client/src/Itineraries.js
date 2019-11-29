@@ -4,7 +4,6 @@ import { getItinerariesByCity } from "./actions/itineraryActions";
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
-import profilePic from './img/GaudiLover.png';
 
 class Itineraries extends Component {
 	constructor(props) {
