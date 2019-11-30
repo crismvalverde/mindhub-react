@@ -46,13 +46,11 @@ class CitiesList extends Component {
             value={this.state.search}
             onChange={this.updateSearch.bind(this)}
           />
-          <ul>
-            {filteredCities.map(city => (
-              <Link to={"/itineraries/" + city._id}>
-                <li key={city._id}>{city.name + ", " + city.country}</li>
-              </Link>
-            ))}
-          </ul>
+          {filteredCities.map(city => (
+            <Link to={"/itineraries/" + city._id}>
+              <li key={city._id}>{city.name + ", " + city.country}</li>
+            </Link>
+          ))}
           <Footer />
         </div>
       );
