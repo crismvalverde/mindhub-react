@@ -20,9 +20,11 @@ mongoose
 
 const routerCities = require("./routes/api/cities");
 const routerItineraries = require("./routes/api/itineraries");
+const routerUsers = require("./routes/api/users");
 
 app.use("/cities", routerCities);
 app.use("/itineraries", routerItineraries);
+app.use("/users", routerUsers);
 
 const port = process.env.PORT || 5000;
 
