@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const cityController  = require("../../controller/cityController");
+const {getAll}  = require("../../controller/cityController");
 
 // City Model
 const City = require("../../models/City");
 
 
 // router.get( cityController.getAll());
+// router.get("/", getAll);
 
 
 router.get("/", (req, res) => {

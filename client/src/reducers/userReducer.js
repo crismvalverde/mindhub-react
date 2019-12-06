@@ -1,15 +1,16 @@
-import { GET_ITEMS, ITEMS_LOADING } from '../actions/types';
+import { POST_USER, ITEMS_LOADING } from '../actions/types';
 
 const initialState = {
-  cities: []
+  user: ''
 }
 
 export default function(state = initialState, action) {
   switch(action.type) {
-    case GET_ITEMS:
+    case POST_USER:
       return {
         ...state,
-        cities: action.payload,
+        users: action.payload,
+        loading: true
       };
     case ITEMS_LOADING:
       return {

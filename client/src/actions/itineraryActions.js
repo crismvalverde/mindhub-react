@@ -5,10 +5,10 @@ export const getItinerariesByCity = (city) => dispatch => {
   dispatch(setItemsLoading());
   axios
     .get('http://localhost:5000/itineraries/' + city)
-    .then(data =>
+    .then(res =>
       dispatch({
         type: GET_ITINERARIES_BY_CITY,
-        payload: data.data
+        payload: res.data
       })
     )
 };

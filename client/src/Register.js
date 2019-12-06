@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import Footer from './footer';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import {Row, Col, Image, Form, Button} from 'react-bootstrap';
 import Profile from './img/profilepic.jpg'
+import axios from 'axios';
 
 class Register extends Component {
   constructor(props) {
@@ -22,26 +19,24 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // const username = this.state.username;
-    // const password = this.state.password;
-    // const email = this.state.email;
-    // const firstName = this.state.firstName;
-    // const lastName = this.state.lastName;
-    // const country = this.state.country;
-    const info = 
-      this.state
-      // username: username,
-      // password: password,
-      // email: email,
-      // firstName: firstName,
-      // lastName: lastName,
-      // country: country
-   // };
-    const data = [...this.state.data, info];
-    this.setState({
-      data: data
-    })
+    const info = this.state
+    // const data = [...this.state.data, info];
+    // this.setState({
+    //   data: data
+    // })
+  console.log(info);
+  axios
+      .post('http://localhost:5000/users/', info)
+      .then(res =>
+        console.log(res)
+        
+      )
   }
+  // function(){
+  //   return this.state.redirect?
+  //    null
+  //    : <redirect to
+  // }
 
   render() {
     return (
@@ -113,41 +108,16 @@ class Register extends Component {
             </Form.Group>
             <Form.Group as={Row} controlId="formHorizontalCheck" className="justify-content-center">
               <Col sm={4}>
-                <Form.Check label="I agree to MYtinerary's Terms & Conditions" />
+                <Form.Check label="I agree to MYtinerary's Terms & Conditions" required />
               </Col>
             </Form.Group>
             <Button type="submit">OK</Button>
           </Form>
-          <div className="row">
-            {this.state.data.map((info, index) => <Card key={index} info={info} />)}
-          </div>
           <Footer />
         </Container>
       </div>
     )
   }
 }
-
-
-const Card = props =>
-  <div className="col-md-6 col-lg-3">
-    <div className="card mb-3">
-      <div className="card-body">
-        <p className="card-title"><span>Username: </span>{props.info.username}</p>
-        <p className="card-text">
-          <span>Email: </span>{props.info.email}
-        </p>
-        <p className="card-text">
-          <span>First Name: </span>{props.info.firstName}
-        </p>
-        <p className="card-text">
-          <span>Last Name: </span>{props.info.lastName}
-        </p>
-        <p className="card-text">
-        <span>Country: </span>{props.info.country}
-      </p>
-      </div>
-    </div>
-  </div>;
 
 export default Register
