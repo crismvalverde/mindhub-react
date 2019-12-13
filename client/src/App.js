@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Home from './homePage'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-// import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cities from './Cities';
 import LogIn from './LogIn';

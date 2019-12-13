@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/crismvalverde/mindhub-react#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "concurrently": "^5.0.0",
@@ -27,7 +29,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.8",
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "react-bootstrap": "^1.0.0-beta.14"
   },
   "devDependencies": {
