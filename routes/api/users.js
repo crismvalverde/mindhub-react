@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   User.findOne({ email: req.body.email })
     .then(user =>
+      {console.log("user es " + user);
       bcrypt.compare(req.body.password, user.password, function (err) {
         if (!err) {
           jwt.sign(
@@ -68,7 +69,7 @@ router.post('/login', async (req, res) => {
           res.send("Error")
         }
       })
-    ).catch(e => console.log(e))
+      }).catch(e => console.log(e))
 })
 
 module.exports = router;
