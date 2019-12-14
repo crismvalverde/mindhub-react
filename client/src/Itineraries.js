@@ -5,12 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import Footer from './footer';
 
-import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
+import { Image, Container, Row, Col, Accordion, Card } from 'react-bootstrap';
 import Activities from "./Activities";
 
 class Itineraries extends Component {
@@ -76,7 +71,7 @@ class Itineraries extends Component {
 													<Row>
 														<Col>
 															<Activities />
-													</Col>
+														</Col>
 													</Row>
 												</Card.Body>
 											</Accordion.Collapse>

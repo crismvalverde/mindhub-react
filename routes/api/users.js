@@ -41,4 +41,34 @@ router.post('/', async (req, res) => {
   })
 });
 
+router.post('/login', async (req, res) => {
+  User.findOne({ email: req.body.email })
+    .then(user =>
+      bcrypt.compare(req.body.password, user.password, function (err) {
+        if (!err) {
+          jwt.sign(
+            { id: user._id },
+            key,
+            { expiresIn: 2592000 },
+            (err, token) => {
+              if (err) {
+                res.json({
+                  success: false,
+                  token: "There was an error"
+                })
+              } else {
+                res.json({
+                  success: true,
+                  token: token
+                })
+              }
+            }
+          )
+        } else {
+          res.send("Error")
+        }
+      })
+    ).catch(e => console.log(e))
+})
+
 module.exports = router;
