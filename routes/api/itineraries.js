@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  
   let cityRequested = req.params.id;
   Itinerary.find({ city: cityRequested })
     .then(id => { res.send(id) })

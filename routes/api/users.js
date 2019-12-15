@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const key = require("../../config/keys").secretOrKey;
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
 // User Model
 const User = require("../../models/User");
@@ -42,9 +43,9 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  User.findOne({ email: req.body.email })
-    .then(user =>
-      {console.log("user es " + user);
+  await User.findOne({ username: req.body.username })
+    .then(user => {
+      console.log("user es " + user);
       bcrypt.compare(req.body.password, user.password, function (err) {
         if (!err) {
           jwt.sign(
@@ -69,7 +70,19 @@ router.post('/login', async (req, res) => {
           res.send("Error")
         }
       })
-      }).catch(e => console.log(e))
+    }).catch(e => console.log(e))
 })
+
+router.get("/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    userModel
+      .findOne({ _id: req.user.id })
+      .then(user => {
+        res.json(user);
+      })
+      .catch(err => res.status(404).json({ error: "User does not exist!" }));
+  }
+);
 
 module.exports = router;

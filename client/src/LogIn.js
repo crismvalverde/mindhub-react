@@ -84,7 +84,7 @@ class Login extends Component {
           </Row>
           <br />
           <Row>
-            <Col><Button tag={Link} to="/api/users/google">Log in with Google</Button></Col>
+            <Col><Button tag={Link} to="http://localhost:5000/auth/Google">Log in with Google</Button></Col>
           </Row>
           <br />
           <Row>
