@@ -48,7 +48,7 @@ class Register extends Component {
             <br />
             <Row>
               <Col>
-                <Image src={Profile} width="150px" roundedCircle alt="Add Photo" />
+                <Image src={Profile} width="100px" roundedCircle alt="Add Photo" />
               </Col>
             </Row>
             <br />

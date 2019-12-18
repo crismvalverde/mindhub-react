@@ -4,12 +4,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
-
 const app = express();
 app.use(cors())
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //passport middleware
 app.use(passport.initialize());
@@ -33,7 +33,7 @@ const routerAuth = require("./routes/api/auth");
 app.use("/cities", routerCities);
 app.use("/itineraries", routerItineraries);
 app.use("/users", routerUsers);
-// app.use("/auth", routerAuth);
+app.use("/auth", routerAuth);
 
 const port = process.env.PORT || 5000;
 

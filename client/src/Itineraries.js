@@ -34,6 +34,7 @@ class Itineraries extends Component {
 		} else {
 			return (
 				<div className="container">
+	
 					<Container>
 						<h1>Barcelona</h1>
 						<h6 className="justify-content-left">Available MYtineraries:</h6>
@@ -42,6 +43,7 @@ class Itineraries extends Component {
 						<Container>
 							<Row>
 								<Col>
+							
 									<Image src={elm.profilePic} width="100px" roundedCircle alt="profile pic" />
 									<p>Username</p>
 								</Col>
@@ -77,10 +79,13 @@ class Itineraries extends Component {
 											</Accordion.Collapse>
 										</Card>
 									</Accordion>
+
 								</Col>
 							</Row>
 						</Container>
 					))}
+									
+
 					<Link to="/cities"><h6>Choose another city...</h6></Link>
 					<Footer />
 				</div>

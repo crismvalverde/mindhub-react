@@ -10,7 +10,7 @@ export const getCities = () => dispatch => {
         type: GET_ITEMS,
         payload: res.data,
       })
-    )
+    ).catch(err => { console.log(err) })
 };
 
 export const setItemsLoading = () => {

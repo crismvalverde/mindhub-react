@@ -16,6 +16,17 @@ class Login extends Component {
     this.setState({ [target.name]: target.value });
   };
 
+  componentDidMount = () => {
+    (function () {
+      var e = document.createElement("script");
+      e.type = "text/javascript";
+      e.async = true;
+      e.src = "https://apis.google.com/js/client:platform.js?onload=gPOnLoad";
+      var t = document.getElementsByTagName("script")[0];
+      t.parentNode.insertBefore(e, t)
+    })()
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const info = this.state;
@@ -84,7 +95,9 @@ class Login extends Component {
           </Row>
           <br />
           <Row>
-            <Col><Button tag={Link} to="http://localhost:5000/auth/Google">Log in with Google</Button></Col>
+            <Col>
+              <div className="g-signin2" data-onsuccess="onSignIn"></div>
+            </Col>
           </Row>
           <br />
           <Row>
@@ -114,3 +127,11 @@ class Login extends Component {
 }
 
 export default Login;
+
+// <Col><Button tag={Link} to="http://localhost:5000/auth/Google">Log in with Google</Button></Col>
+
+// <Row>
+// <Col>
+//   <Link to="/auth/Google"><Button>Log in with Google</Button></Link>
+// </Col>
+// </Row>

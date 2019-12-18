@@ -9,7 +9,7 @@ const passport = require("passport");
 // User Model
 const User = require("../../models/User");
 
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   const users = await User.find();
   res.json(users)
 });
@@ -37,7 +37,6 @@ router.post('/', async (req, res) => {
     newUser.save().then(user => res.json(user))
       .then(user => {
         res.json(user.username)
-        res.redirect('/login')
       }).catch(e => console.log(e))
   })
 });
@@ -45,7 +44,7 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   await User.findOne({ username: req.body.username })
     .then(user => {
-      console.log("user es " + user);
+      console.log("EL USER INGRESADO ES " + user);
       bcrypt.compare(req.body.password, user.password, function (err) {
         if (!err) {
           jwt.sign(
@@ -76,11 +75,9 @@ router.post('/login', async (req, res) => {
 router.get("/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    userModel
+    User
       .findOne({ _id: req.user.id })
-      .then(user => {
-        res.json(user);
-      })
+      .then(user => { res.json(user); })
       .catch(err => res.status(404).json({ error: "User does not exist!" }));
   }
 );
