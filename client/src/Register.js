@@ -6,6 +6,10 @@ import Profile from './img/profilepic.jpg'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { postUser } from './actions/registerActions';
+import PropTypes from "prop-types";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -119,4 +123,14 @@ class Register extends Component {
   }
 }
 
-export default Register
+Register.propTypes = {
+  postUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.item4.user
+  };
+};
+
+export default connect(mapStateToProps, { postUser })(Register);

@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  await User.findOne({ username: req.body.username })
+  await User.findOne({ email: req.body.email })
     .then(user => {
       console.log("EL USER INGRESADO ES " + user);
       bcrypt.compare(req.body.password, user.password, function (err) {

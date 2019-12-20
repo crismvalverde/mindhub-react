@@ -3,11 +3,11 @@ const router = express.Router();
 const passport = require("passport")
 const app = express();
 
-app.get('/auth/google',
+app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }),
+app.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     console.log(req.user);
     jwt.sign(
@@ -27,7 +27,8 @@ app.get('/auth/google/callback',
           });
         } else {
           // Successful authentication, redirect home.
-          res.redirect('http://localhost:3000/' + token)
+          res.redirect('http://localhost:3000/home/' + token)
+          
         }
       })
   }

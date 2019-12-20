@@ -4,17 +4,34 @@ import Container from "react-bootstrap/Container";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import { connect } from 'react-redux';
+import { login } from './actions/loginActions';
+import PropTypes from "prop-types";
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
-    };
+      email: '',
+      password: '',
+      remember: false
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.login({ "email": this.state.email })
+  };
+
+  // signGoogle() {
+  //   window.location.href = 'http://localhost:5000/auth/google'
+  // }
 
   componentDidMount = () => {
     (function () {
@@ -25,12 +42,6 @@ class Login extends Component {
       var t = document.getElementsByTagName("script")[0];
       t.parentNode.insertBefore(e, t)
     })()
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const info = this.state;
-    console.log(info);
   };
 
   render() {
@@ -50,14 +61,14 @@ class Login extends Component {
               className="justify-content-center"
             >
               <Form.Label column sm={2}>
-                Username
+                Email
               </Form.Label>
               <Col sm={4}>
                 <Form.Control
-                  type="username"
-                  name="username"
+                  type="email"
+                  name="email"
                   required
-                  value={this.state.username}
+                  value={this.state.email}
                   onChange={this.handleChange}
                 />
               </Col>
@@ -86,22 +97,26 @@ class Login extends Component {
               className="justify-content-center"
             >
               <Col sm={4}>
-                <Form.Check label="Remember me" />
+                <Form.Check
+                  astype="checkbox"
+                  name="remember"
+                  label="Remember me"
+                  value={this.state.remember}
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
+            <Row>
+              <Col>
+                <Button type="submit" onClick={this.handleSubmit} >OK</Button>
+              </Col>
+            </Row>
           </Form>
-          <Row>
-            <Col><Button type="submit">OK</Button></Col>
-          </Row>
           <br />
           <Row>
             <Col>
-              <div className="g-signin2" data-onsuccess="onSignIn"></div>
+              <div className="g-signin2 justify-content-center" data-onsuccess="onSignIn"></div>
             </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col><Button>Log in with Facebook</Button></Col>
           </Row>
           <br />
           <Row>
@@ -126,12 +141,21 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
 
-// <Col><Button tag={Link} to="http://localhost:5000/auth/Google">Log in with Google</Button></Col>
+const mapStateToProps = state => {
+  return {
+    login: state.item5.login
+  };
+};
 
-// <Row>
-// <Col>
-//   <Link to="/auth/Google"><Button>Log in with Google</Button></Link>
-// </Col>
-// </Row>
+export default connect(mapStateToProps, { login })(Login);
+
+// <Button type="submit" onClick={this.signGoogle.bind(this)} >Log in with Google</Button>
+
+// handleSubmit = event => {
+//   event.preventDefault();
+//   this.props.login({ "email": this.state.email, "password": this.state.password })
+// };

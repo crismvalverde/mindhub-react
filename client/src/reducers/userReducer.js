@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
     case POST_USER:
       return {
         ...state,
-        users: action.payload,
+        user: action.payload,
         loading: true
       };
     case ITEMS_LOADING:
